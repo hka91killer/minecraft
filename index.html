@@ -3,66 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Killer Minecraft Server</title>
+<title>네온 인터페이스</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(135deg,#1f1f2e,#0f0f18);
-color:white;
-text-align:center;
+:root{
+--배경:#020617;
+--네온:#00f7ff;
+--네온2:#7c3aed;
+--텍스트:#e2e8f0;
 }
 
-header{
-padding:20px;
-font-size:28px;
-font-weight:bold;
-background:#111;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
+
+body{
+background: radial-gradient(circle at top, #0f172a, #020617);
+color:var(--텍스트);
+font-family:"Pretendard",sans-serif;
+height:100vh;
+overflow-x:hidden;
+}
+
+/* 네온 배경 효과 */
+
+body::before{
+content:"";
+position:fixed;
+width:800px;
+height:800px;
+background:radial-gradient(circle,var(--네온),transparent 70%);
+filter:blur(200px);
+top:-200px;
+left:-200px;
+opacity:0.2;
+z-index:-1;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:800px;
+height:800px;
+background:radial-gradient(circle,var(--네온2),transparent 70%);
+filter:blur(200px);
+bottom:-200px;
+right:-200px;
+opacity:0.2;
+z-index:-1;
+}
+
+/* 상단 메뉴 */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 8%;
+backdrop-filter: blur(10px);
+}
+
+.logo{
+font-family:"Orbitron";
+font-size:22px;
+letter-spacing:2px;
+color:var(--네온);
+text-shadow:0 0 10px var(--네온);
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+color:#cbd5f5;
+font-weight:500;
+position:relative;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+width:0%;
+height:2px;
+left:0;
+bottom:-4px;
+background:var(--네온);
+transition:0.3s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+/* 메인 화면 */
 
 .hero{
-padding:100px 20px;
+height:85vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
 }
 
 .hero h1{
-font-size:50px;
-margin-bottom:10px;
+font-size:70px;
+font-family:"Orbitron";
+background:linear-gradient(90deg,var(--네온),var(--네온2));
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 25px rgba(0,247,255,0.3);
 }
 
-.server-box{
-background:#1a1a2e;
-display:inline-block;
-padding:30px;
-border-radius:12px;
-margin-top:30px;
+.hero p{
+margin-top:20px;
+font-size:18px;
+opacity:0.7;
 }
 
-.ip{
-font-size:22px;
-color:#00ff9d;
-}
+/* 네온 버튼 */
 
 .btn{
-margin-top:20px;
-padding:15px 35px;
-border:none;
+margin-top:35px;
+padding:14px 30px;
+border:1px solid var(--네온);
+color:var(--네온);
+background:transparent;
 border-radius:10px;
-font-size:18px;
 cursor:pointer;
-background:#5865F2;
-color:white;
+font-weight:600;
+letter-spacing:1px;
+transition:0.3s;
 }
 
 .btn:hover{
-background:#4752C4;
+background:var(--네온);
+color:#020617;
+box-shadow:
+0 0 10px var(--네온),
+0 0 40px var(--네온);
 }
 
+/* 카드 섹션 */
+
+.section{
+padding:80px 10%;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+padding:30px;
+border-radius:15px;
+background:rgba(255,255,255,0.03);
+backdrop-filter: blur(10px);
+border:1px solid rgba(255,255,255,0.05);
+transition:0.35s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border:1px solid var(--네온);
+box-shadow:0 0 25px rgba(0,247,255,0.15);
+}
+
+.card h3{
+margin-bottom:10px;
+color:var(--네온);
+}
+
+/* 푸터 */
+
 footer{
-margin-top:100px;
-padding:20px;
-color:#aaa;
+text-align:center;
+padding:40px;
+opacity:0.6;
+font-size:14px;
 }
 
 </style>
@@ -70,42 +200,55 @@ color:#aaa;
 
 <body>
 
-<header>
-⚔ Killer Minecraft Server
-</header>
+<nav>
+<div class="logo">NEON</div>
+
+<ul>
+<li><a href="#">홈</a></li>
+<li><a href="#">프로젝트</a></li>
+<li><a href="#">소개</a></li>
+<li><a href="#">문의</a></li>
+</ul>
+</nav>
 
 <section class="hero">
 
-<h1>Welcome Player</h1>
-<p>우리 마인크래프트 서버에 오신 것을 환영합니다</p>
+<h1>네온 인터페이스</h1>
 
-<div class="server-box">
+<p>현대적인 네온 스타일 웹 인터페이스</p>
 
-<p>서버 IP</p>
-<div class="ip"></div>
+<button class="btn">시작하기</button>
 
-<button class="btn" onclick="copyIP()">IP 복사</button>
+</section>
 
+<section class="section">
+
+<div class="grid">
+
+<div class="card">
+<h3>빠른 성능</h3>
+<p>최적화된 레이아웃과 부드러운 애니메이션.</p>
 </div>
 
-<br><br>
+<div class="card">
+<h3>반응형 디자인</h3>
+<p>PC, 태블릿, 모바일에서 모두 작동합니다.</p>
+</div>
 
-<a href="https://discord.gg/YOURINVITE">
-<button class="btn">Discord 참여</button>
-</a>
+<div class="card">
+<h3>모던 UI</h3>
+<p>Glass + Neon 스타일 디자인.</p>
+</div>
+
+</div>
 
 </section>
 
 <footer>
-© 2026 Killer Server
-</footer>
 
-<script>
-function copyIP(){
-navigator.clipboard.writeText("14.5.42.34");
-alert("IP가 복사되었습니다!");
-}
-</script>
+© 2026 네온 인터페이스
+
+</footer>
 
 </body>
 </html>
